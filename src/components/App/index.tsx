@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src="logo192.png" className="App-logo" alt="logo" />
         <p>
           Hello 행복주택 프로젝트.
         </p>
