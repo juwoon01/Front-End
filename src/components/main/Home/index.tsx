@@ -5,7 +5,7 @@ import Header from '../../organisms/Header';
 const Home = ()=>{
     return(
         <HomeWrrapper>
-            <Header name={'as'}/>
+            <Header name={'로그인'}/>
         </HomeWrrapper>
     );
 }
