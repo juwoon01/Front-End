@@ -27,7 +27,7 @@ const SignUp = ()=>{
 
     return(
         <SignUpWrrapper>
-            <Header/>
+            <Header name={'로그인'}/>
             <SignUpMainWrrapper>
                 <SignUpInfoWrraper>
                     <NameWrraper placeholder='이름' onChange={(e) => {setName(e.currentTarget.value)}}/>
