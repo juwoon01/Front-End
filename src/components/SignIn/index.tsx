@@ -2,13 +2,20 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Header from '../organisms/Header';
 import { ColumnLayout } from '../../themes/layout';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = ()=>{
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [passWord, setPassWord] = useState('');
 
     const onClickSignIn = () => {
-
+        if(email === ''){
+            alert("이메일을 입력해주세요");
+        } else if(passWord === ''){
+            alert("비밀번호를 입력해주세요");
+        }
+        navigate(`/`,{state: {isName: email}});
     };
 
     const onClickKakaoSignIn = () => {
