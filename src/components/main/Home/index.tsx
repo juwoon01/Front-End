@@ -7,15 +7,19 @@ import  useScript  from '../../../controllers/useScript';
 const Home = ()=>{
 
     const status = useScript("https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=jxfm7ygqxg");
+    const initMap = () => {
+        const map = new naver.maps.Map("map", {
+          center: new naver.maps.LatLng(37.511337, 127.012084),
+          zoom: 13,
+        });
+      };
     useEffect(() => {
         if (status === "ready") {
-            const initMap = () => {
-                const map = new naver.maps.Map("map", {
-                  center: new naver.maps.LatLng(37.511337, 127.012084),
-                  zoom: 13,
-                });
-              };
             initMap();
+        } else if(status === "loading"){
+            setTimeout(()=>{
+                initMap();
+            },150);
         }
     }, []);
 
