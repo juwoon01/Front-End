@@ -1,6 +1,6 @@
 import React  ,{ useEffect } from 'react';
 import styled from 'styled-components';
-import { ColumnLayout } from '../../../themes/layout';
+import { ColumnLayout, RowLayout } from '../../../themes/layout';
 import Header from '../../organisms/Header';
 import { useLocation } from 'react-router-dom';
 import  useScript  from '../../../controllers/useScript'; 
@@ -38,8 +38,12 @@ const Home = ()=>{
     return(
         <HomeWrrapper>
             <Header name={isName}/>
-            <div>main page</div>
             <MappWrrapper id="map"></MappWrrapper>
+            <SideBarWrrapper></SideBarWrrapper>
+            <SearchInput placeholder = "분양 단지명을 검색해보세요"></SearchInput>
+            <ContentWrrapper>
+                <Content></Content>
+            </ContentWrrapper>
         </HomeWrrapper>
     );
 }
@@ -50,7 +54,51 @@ const HomeWrrapper = styled.div`
 
 `;
 
-const MappWrrapper = styled.div`
-    width: 90%;
-    height: 600px;
+const MappWrrapper = styled(ColumnLayout)`
+    position: absolute;
+    width: 1042px;
+    height: 811px;
+    margin-top: 112px;
+`;
+
+const SideBarWrrapper = styled(RowLayout)`
+    width: 398px;
+    height: 811px;
+    left: 1042px;
+    top: 169px;
+`;
+
+const SearchInput = styled.input`
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+
+    position: absolute;
+    width: 330px;
+    height: 54px;
+    left: 1076px;
+    top: 189px;
+
+    border: 2px solid #3B8319;
+    color: #888888;
+    text-align:center;
+`;
+
+const ContentWrrapper = styled(RowLayout)`
+
+`;
+
+const Content = styled(ColumnLayout)`
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 365px;
+    height: 131px;
+    left: 1057px;
+    top: 266px;
+
+    background: #FFFDFD;
+    border: 1px solid #000000;
 `;
