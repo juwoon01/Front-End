@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Header from '../organisms/Header';
 import { ColumnLayout } from '../../themes/layout';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignIn = ()=>{
     const navigate = useNavigate();
@@ -14,8 +15,23 @@ const SignIn = ()=>{
             alert("이메일을 입력해주세요");
         } else if(passWord === ''){
             alert("비밀번호를 입력해주세요");
+        } else{
+            axios({
+                method: 'post',
+                url: 'https://129.154.195.162:8080/api/authenticate',
+                data: {
+                  password: passWord,
+                  userid: email,
+                }
+            }).then((response) =>{
+                console.log(response);
+                navigate(`/`,{state: {isName: email}});
+            }).catch((error) => {
+                console.log(error);
+            });
+            
         }
-        navigate(`/`,{state: {isName: email}});
+
     };
 
     const onClickKakaoSignIn = () => {

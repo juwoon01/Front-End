@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ColumnLayout } from '../../themes/layout';
 import Header from '../organisms/Header';
+import axios from 'axios';
 
 const SignUp = ()=>{
     const [name, setName] = useState('');
@@ -9,11 +10,27 @@ const SignUp = ()=>{
     const [passWord, setPassWord] = useState('');
 
     const onClickSignUP = () =>{
-        console.log(name);
-        console.log(email);
-        console.log(passWord);
         if (passWord === '') {
             alert('비밀번호를 입력해 주세요');
+        } else if(email === ''){
+            alert('이메일을 입력해 주세요');
+        } else if(name === ''){
+            alert('이름을 입력해 주세요');
+        } else{
+            axios({
+                method: 'post',
+                url: 'https://129.154.195.162:8080/api/signup',
+                data: {
+                  username: name,
+                  password: passWord,
+                  userid: email,
+                  nickname: name
+                }
+            }).then((response) =>{
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
         }
     };
 
