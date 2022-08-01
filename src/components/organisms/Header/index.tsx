@@ -18,6 +18,11 @@ const Header = (prop: IProps) =>{
         navigate(`/signUp`);
     };
 
+    const onClickLogout = () =>{
+        localStorage.removeItem("token");
+        navigate(`/`);
+    }
+
     return (
         <HeaderWrapper>
             <Sign>
@@ -28,6 +33,10 @@ const Header = (prop: IProps) =>{
                 <SignUp onClick={onClickSignUp}>
                     회원가입
                 </SignUp>
+                <Seperator/>
+                <Logout onClick={onClickLogout}>
+                    로그아웃
+                </Logout>
             </Sign>
         </HeaderWrapper>
     );
@@ -51,6 +60,10 @@ const SignIn = styled(RowLayout)`
 `;
 
 const SignUp = styled(RowLayout)`
+
+`;
+
+const Logout = styled(RowLayout)`
 
 `;
 

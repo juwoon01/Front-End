@@ -18,16 +18,16 @@ const SignIn = ()=>{
         } else{
             axios({
                 method: 'post',
-                url: 'https://129.154.195.162:8080/api/authenticate',
+                url: 'http://129.154.195.162:8080/api/authenticate',
                 data: {
                   password: passWord,
                   userid: email,
                 }
             }).then((response) =>{
-                console.log(response);
-                navigate(`/`,{state: {isName: email}});
+                navigate(`/`, {state: {isName: email}});
+                localStorage.setItem("token", response.data.token);
             }).catch((error) => {
-                console.log(error);
+                alert("로그인 실패 시 400에러 발생 : " + error);
             });
             
         }

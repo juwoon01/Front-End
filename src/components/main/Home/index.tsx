@@ -1,11 +1,10 @@
-import React  ,{ useEffect } from 'react';
+import React  ,{ useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ColumnLayout, RowLayout } from '../../../themes/layout';
 import Header from '../../organisms/Header';
 import { useLocation } from 'react-router-dom';
 import  useScript  from '../../../controllers/useScript'; 
 const Home = ()=>{
-
     const status = useScript("https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=jxfm7ygqxg");
     const initMap = () => {
         const map = new naver.maps.Map("map", {
@@ -13,6 +12,10 @@ const Home = ()=>{
           zoom: 13,
         });
       };
+
+    const [isName, setName] = useState("");
+    
+
     useEffect(() => {
         if (status === "ready") {
             initMap();
@@ -21,11 +24,22 @@ const Home = ()=>{
                 initMap();
             },150);
         }
+
+        const token:string|null = localStorage.getItem("token");
+        if(typeof token === "string" && token != ""){
+            //로그인
+            setName(token);
+        }else{
+            setName('로그인');
+        }
+        
     }, []);
+
+    
 
 
  
-
+/*
     const location = useLocation();
     let isName;
     if(location.state != null){
@@ -34,7 +48,7 @@ const Home = ()=>{
     }else{
         isName = '로그인';
     }
-
+*/
     return(
         <HomeWrrapper>
             <Header name={isName}/>

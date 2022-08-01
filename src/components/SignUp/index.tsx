@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { ColumnLayout } from '../../themes/layout';
 import Header from '../organisms/Header';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = ()=>{
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [passWord, setPassWord] = useState('');
@@ -19,7 +21,7 @@ const SignUp = ()=>{
         } else{
             axios({
                 method: 'post',
-                url: 'https://129.154.195.162:8080/api/signup',
+                url: 'http://129.154.195.162:8080/api/signup',
                 data: {
                   username: name,
                   password: passWord,
@@ -27,12 +29,14 @@ const SignUp = ()=>{
                   nickname: name
                 }
             }).then((response) =>{
-                console.log(response);
+                navigate(`/signIn`);
             }).catch((error) => {
-                console.log(error);
+                alert("중복 시 500에러 발생 : " + error);
             });
         }
     };
+
+
 
     useEffect(() => {
         if(name.length > 10){
@@ -40,7 +44,7 @@ const SignUp = ()=>{
         }
     }, [name, email]);
 
-
+    
 
     return(
         <SignUpWrrapper>
