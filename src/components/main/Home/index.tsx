@@ -11,6 +11,15 @@ const Home = ()=>{
           center: new naver.maps.LatLng(37.511337, 127.012084),
           zoom: 13,
         });
+        const marker = new naver.maps.Marker({
+            position: new naver.maps.LatLng(37.4867995957995, 126.982211871752),
+            map: map,
+            icon: {
+              content: `
+                  <img alt="marker" src="원하는 마커 이미지" />
+                `,
+            },
+          });
       };
 
     const [isName, setName] = useState("");
@@ -19,6 +28,7 @@ const Home = ()=>{
     useEffect(() => {
         if (status === "ready") {
             initMap();
+            
         } else if(status === "loading"){
             setTimeout(()=>{
                 initMap();

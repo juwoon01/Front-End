@@ -36,15 +36,11 @@ const SignUp = ()=>{
         }
     };
 
-
-
     useEffect(() => {
         if(name.length > 10){
             console.log('use effect');
         }
     }, [name, email]);
-
-    
 
     return(
         <SignUpWrrapper>

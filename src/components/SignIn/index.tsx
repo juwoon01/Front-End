@@ -24,8 +24,9 @@ const SignIn = ()=>{
                   userid: email,
                 }
             }).then((response) =>{
-                navigate(`/`, {state: {isName: email}});
                 localStorage.setItem("token", response.data.token);
+                navigate(`/`, {state: {isName: email}});
+                
             }).catch((error) => {
                 alert("로그인 실패 시 400에러 발생 : " + error);
             });
